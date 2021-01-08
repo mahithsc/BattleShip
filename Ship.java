@@ -102,5 +102,17 @@
  	public int setRandomDirection()
  	{
  		setDirection(Math.random() * 3);
- 	}
+	}
+
+	public String toString()
+	{
+		return player; 
+		return type; 
+		return length; 
+		return positionX; 
+		return positionY;
+		return hitCounter; 
+		return totalHits; 
+		return direction;
+    }
  }
