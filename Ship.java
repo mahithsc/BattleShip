@@ -13,7 +13,13 @@
  	private int positionY;
  	private int hitCounter; // hits the ship has taken
  	private int totalHits; // total amount of hits each ship can take
+ 	private int randomCoordinate;
+ 	private int randomDirection;
  	private int direction; // 0, 1, 2, 3 depending upon the direction which the ship is facing on the board
+ 	// Directions for the ship:
+ 	//   0
+ 	// 3   1
+ 	//   2
  	
  	public Ship(String type, int length, int totalHits) {
  		this.type = type;
@@ -96,12 +102,12 @@
  	{
  		return direction;
  	}
- 	
- 	// other methods
- 	
- 	public int setRandomDirection()
- 	{
- 		setDirection(Math.random() * 3);
-	}
-	
+ 	public int getRandomCoordinate(){
+ 		randomCoordinate = (int)Math.random() * 9;
+ 		return randomCoordinate;
+ 	}
+ 	public int getRandomDirection(){
+ 		randomDirection = (int)Math.random() * 3;
+ 		return randomDirection;
+ 	}
  }
