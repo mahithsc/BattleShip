@@ -45,4 +45,4 @@ Mahith and Brendan were working on the logic of the placing the ships and declar
 
 Alex
 Crew Log: 1/12/21
-We all began consolidating separate classes into coherent projects to be used in the final submission.
+We all began consolidating separate classes into coherent projects to be used in the final submission. We also worked out a few bugs on the respective programs to ensure a smooth transition.
