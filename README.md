@@ -42,3 +42,7 @@ Alex
 Crew Log: 1/7/21
 Simon and I continued working on the board layout and graphical design. 
 Mahith and Brendan were working on the logic of the placing the ships and declaring the array to store the positions of the computer and the players ships in addition to starting the actual logic of seeing if the placed ships would overlap when placed. They wrote the methods for generating random coordinates and orientations for the ships in order to place them in random order on the board, and if the ship overlaps then it will regenerate the placement and the orientation until it finds a valid position.
+
+Alex
+Crew Log: 1/12/21
+We all began consolidating separate classes into coherent projects to be used in the final submission.
