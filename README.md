@@ -46,3 +46,7 @@ Mahith and Brendan were working on the logic of the placing the ships and declar
 Alex
 Crew Log: 1/12/21
 We all began consolidating separate classes into coherent projects to be used in the final submission. We also worked out a few bugs on the respective programs to ensure a smooth transition.
+
+Alex
+Crew Log: 1/13/21
+Simon and I were working on matching the images we chose for the board with the actions they were chosen to represent, but eventually faced minor bugs and other issues that will be addressed tomorrow after the school day in full.
