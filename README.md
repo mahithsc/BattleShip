@@ -50,3 +50,7 @@ We all began consolidating separate classes into coherent projects to be used in
 Alex
 Crew Log: 1/13/21
 Simon and I were working on matching the images we chose for the board with the actions they were chosen to represent, but eventually faced minor bugs and other issues that will be addressed tomorrow after the school day in full.
+
+Alex
+Crew Log: 1/15/21
+Continued integration work group-wide. Worked out more bugs and compatibility errors.
