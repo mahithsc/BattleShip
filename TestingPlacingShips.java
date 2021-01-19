@@ -7,7 +7,6 @@
  import java.util.ArrayList;
  
  public class TestingPlacingShips {
- 	
  	public static void main(String [] args){
  		final int NUMBER_OF_SHIPS = 5;
  		
