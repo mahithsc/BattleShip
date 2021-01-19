@@ -9,7 +9,15 @@ import java.awt.event.*;
 import javax.swing.*;
 import java.util.ArrayList;
 public class BattleShipBoard
-        extends JFrame implements ActionListener{
+    extends JFrame implements ActionListener{
+    	
+    final int NUMBER_OF_SHIPS = 5;
+   	
+   	Ship[] playerShips = new Ship[NUMBER_OF_SHIPS];
+ 	Ship[] computerShips = new Ship[NUMBER_OF_SHIPS];
+ 	
+ 	String [][] computerBoard = new String[10][10];
+ 	String [][] playerBoard = new String[10][10];
 
     // storage variables
     int button1 = -1;
@@ -37,12 +45,15 @@ public class BattleShipBoard
 
 
     // JButtons
-    JButton[] gameButtons = new JButton[100];
+    JButton[][] gameButtons = new JButton[10][10];
     JButton startButton = new JButton("Restart");
     JButton stopButton = new JButton("Stop");
 
     // image icons
-    ImageIcon original = new ImageIcon("images/imageOriginal.gif");
+    ImageIcon original = new ImageIcon("imageOriginal.gif");
+    ImageIcon hit = new ImageIcon("hit.gif");
+    ImageIcon miss = new ImageIcon("miss.gif");
+    
 
     // images
     ArrayList<String> images = new ArrayList<String>();
@@ -51,7 +62,14 @@ public class BattleShipBoard
 
     // constructor
     public BattleShipBoard() {
-        super("BattleShip");
+    	super("BattleShip");
+    	declareShips(playerShips, NUMBER_OF_SHIPS);
+ 		declareShips(computerShips, NUMBER_OF_SHIPS);
+ 		declareBoardArray(playerBoard);
+ 		declareBoardArray(computerBoard);
+ 		placeManyShips(playerShips, playerBoard);
+ 		placeManyShips(computerShips, computerBoard);
+    	
         setSize(1500, 800);
         
         // add ActionListener to the start and stop buttons
@@ -90,7 +108,7 @@ public class BattleShipBoard
         scorePnl.add(shipLbl);
         shipPnl.setLayout(new GridLayout(5,1,2,2));
         backgroundPnl.add(shipLbl, BorderLayout.WEST);
-
+        
         // add the backgroundPnl
         add(backgroundPnl);
 
@@ -98,26 +116,37 @@ public class BattleShipBoard
         setVisible(true);
     }
 
-
     public void makeGameButtons() {
-        for (int i = 0; i<gameButtons.length; i++){
-            // put the original image on all the buttons
-            gameButtons[i] = new JButton(original);
-            // add ActionListener to the buttons
-            gameButtons[i].addActionListener(this);
-            gamePnl.add(gameButtons[i]);
-        }
+    	for (int row = 0; row<gameButtons.length; row++) {
+  			for (int col = 0; col<gameButtons[0].length; col++) { 
+  				// put the original image on all the buttons
+            	gameButtons[row][col] = new JButton(original);
+            	// add ActionListener to the buttons
+            	gameButtons[row][col].addActionListener(this);
+            	gamePnl.add(gameButtons[row][col]);
+  			}
+  		}     
     }
 
     public void resetGameButtons() {
-        for (int i = 0; i<gameButtons.length; i++){
-            // reset the image and enable all the buttons
-            gameButtons[i].setIcon(original);
-            gameButtons[i].setEnabled(true);
-        }
+        for (int row = 0; row<gameButtons.length; row++) {
+  			for (int col = 0; col<gameButtons[0].length; col++) { 
+  				gameButtons[row][col].setIcon(original);
+            	gameButtons[row][col].setEnabled(true);
+  			}
+  		}     
     }
-
-
+    public void computerTurn(){
+    	int x = (int)(Math.random() * 10);
+    	int y = (int)(Math.random() * 10);
+    	
+    	if(playerBoard[y][x].equals("/")){
+    		playerBoard[y][x] = "hit";
+    		gameButtons[y][x].setIcon(hit);
+    	}
+    	//else if(playerBoard[y][x].equals("hit") 
+    }
+    
     public void resetBoard() {
         images.clear();
         gameImages.clear();
@@ -135,7 +164,6 @@ public class BattleShipBoard
         matchLbl.setText("Hits: " + hitsCounter);
 
     }
-    
     public static void declareShips(Ship[] nameShips, int numberShips){
  		
  	//	int randomShip; // declares the random ship from the arraylist
@@ -320,20 +348,5 @@ public class BattleShipBoard
     
     public static void main(String [] args){
     	BattleShipBoard battleShipBoard = new BattleShipBoard();
-    	
-    	final int NUMBER_OF_SHIPS = 5;
- 		
- 		Ship[] playerShips = new Ship[NUMBER_OF_SHIPS];
- 		Ship[] computerShips = new Ship[NUMBER_OF_SHIPS];
- 	
- 		String [][] computerBoard = new String[10][10];
- 		String [][] playerBoard = new String[10][10];
- 		
- 		declareShips(playerShips, NUMBER_OF_SHIPS);
- 		declareShips(computerShips, NUMBER_OF_SHIPS);
- 		declareBoardArray(playerBoard);
- 		declareBoardArray(computerBoard);
- 		placeManyShips(playerShips, playerBoard);
- 		placeManyShips(computerShips, computerBoard);
     }
 } // end class BattleShipBoard
