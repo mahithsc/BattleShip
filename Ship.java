@@ -103,11 +103,11 @@
  		return direction;
  	}
  	public int getRandomCoordinate(){
- 		randomCoordinate = (int)Math.random() * 9;
+ 		randomCoordinate = (int)(Math.random() * 10);
  		return randomCoordinate;
  	}
  	public int getRandomDirection(){
- 		randomDirection = (int)Math.random() * 3;
+ 		randomDirection = (int)(Math.random() * 4);
  		return randomDirection;
  	}
  }
