@@ -54,3 +54,7 @@ Simon and I were working on matching the images we chose for the board with the 
 Alex
 Crew Log: 1/15/21
 Continued integration work group-wide. Worked out more bugs and compatibility errors.
+
+Alex
+Crew Log: 1/19/21
+Finished adding ship placement logic to the board. The group also picked out images to use on the board for different situations, i.e. still water/hit ship/ missed ship.
