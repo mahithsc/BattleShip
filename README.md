@@ -58,3 +58,7 @@ Continued integration work group-wide. Worked out more bugs and compatibility er
 Alex
 Crew Log: 1/19/21
 Finished adding ship placement logic to the board. The group also picked out images to use on the board for different situations, i.e. still water/hit ship/ missed ship.
+
+Alex
+Crew Log: 1/20/21
+Put finishing touches on the fully merged project. Notable mentions include implementing the images chosen for the board, i.e. still/hit/miss.
