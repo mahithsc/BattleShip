@@ -18,12 +18,13 @@ public class BattleShipBoard
  	
  	String [][] computerBoard = new String[10][10];
  	String [][] playerBoard = new String[10][10];
-
+	
     // storage variables
     int button1 = -1;
     int button2 = -1;
     String image1;
     String image2;
+    int gamePlay;
 
     // counter variables
     int gameCounter = 1;
@@ -35,6 +36,7 @@ public class BattleShipBoard
     JPanel gamePnl = new JPanel ();
     JPanel scorePnl = new JPanel ();
     JPanel shipPnl = new JPanel ();
+    JPanel[][] playerPnl = new JPanel[10][10];
 
     // JLabels
     JLabel titleLbl = new JLabel("BattleShip");
@@ -79,18 +81,18 @@ public class BattleShipBoard
         backgroundPnl.setLayout(new BorderLayout());
 
         // title Panel (NORTH)
-        titlePnl.setBackground(Color.CYAN);
+        titlePnl.setBackground(Color.LIGHT_GRAY);
         titlePnl.add(titleLbl);
         backgroundPnl.add(titlePnl, BorderLayout.NORTH);
 
         // message Panel (SOUTH)
-        messagePnl.setBackground(Color.CYAN);
+        messagePnl.setBackground(Color.LIGHT_GRAY);
         messagePnl.add(messageLbl);
         backgroundPnl.add(messagePnl, BorderLayout.SOUTH);
 
         // game Panel (CENTER)
-        gamePnl.setBackground(Color.ORANGE);
-        gamePnl.setLayout(new GridLayout(10,5,2,2));
+        gamePnl.setBackground(Color.LIGHT_GRAY);
+        gamePnl.setLayout(new GridLayout(10,10,2,2));
         // make JButtons
         makeGameButtons();
         // add JButtons
@@ -105,15 +107,25 @@ public class BattleShipBoard
         backgroundPnl.add(scorePnl, BorderLayout.EAST);
 
         // Ship status panel (WEST)
-        scorePnl.add(shipLbl);
-        shipPnl.setLayout(new GridLayout(5,1,2,2));
+        //scorePnl.add(shipLbl);
+        shipPnl.setLayout(new GridLayout(10,10,2,2));
+        //makePlayerPanel();
         backgroundPnl.add(shipLbl, BorderLayout.WEST);
-        
         // add the backgroundPnl
         add(backgroundPnl);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+        
+        //turns
+        
+        while(gamePlay == 0){
+        	computerTurn();
+        	playerTurn();
+        	
+        	
+        	
+        }
     }
 
     public void makeGameButtons() {
@@ -127,6 +139,18 @@ public class BattleShipBoard
   			}
   		}     
     }
+    
+    public void makePlayerPanel() {
+    	for (int row = 0; row<playerPnl.length; row++) {
+  			for (int col = 0; col<playerPnl[0].length; col++) { 
+  				// put the original image on all the buttons
+            	playerPnl[row][col] = new JPanel();
+            	playerPnl[row][col].setBackground(Color.CYAN);
+            	// add ActionListener to the buttons
+            	shipPnl.add(playerPnl[row][col]);
+  			}
+  		}     
+    }
 
     public void resetGameButtons() {
         for (int row = 0; row<gameButtons.length; row++) {
@@ -137,14 +161,36 @@ public class BattleShipBoard
   		}     
     }
     public void computerTurn(){
-    	int x = (int)(Math.random() * 10);
-    	int y = (int)(Math.random() * 10);
+    	boolean turn = true;
     	
-    	if(playerBoard[y][x].equals("/")){
-    		playerBoard[y][x] = "hit";
-    		gameButtons[y][x].setIcon(hit);
+    	int xRand = (int)(Math.random() * 10);
+    	int yRand = (int)(Math.random() * 10);
+    	
+    	while(turn == true){
+    	
+    		if(playerBoard[yRand][xRand].equals("/")){
+    			playerBoard[yRand][xRand] = "miss";
+    			gameButtons[yRand][xRand].setIcon(miss);
+    		}
+    		else if(playerBoard[yRand][xRand].equals("hit")){
+    			xRand = (int)(Math.random() * 10);
+    			yRand = (int)(Math.random() * 10);
+    		}
+    		else{
+    			playerBoard[yRand][xRand] = "hit";
+    			gameButtons[yRand][xRand].setIcon(hit);
+    			turn = false;
+    			break;
+    		}
     	}
-    	//else if(playerBoard[y][x].equals("hit") 
+	}
+    public void playerTurn(){
+    	
+    	
+    	
+    	
+    	
+    	
     }
     
     public void resetBoard() {
