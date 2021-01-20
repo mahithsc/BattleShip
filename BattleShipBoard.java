@@ -22,10 +22,9 @@ public class BattleShipBoard
     // storage variables
     int button1 = -1;
     int button2 = -1;
-    String image1;
-    String image2;
-    int gamePlay;
-
+    int computerHits = 0;
+	int playerHits = 0;
+	String shipsStatus;
     // counter variables
     int gameCounter = 1;
     int hitsCounter = 0;
@@ -44,7 +43,7 @@ public class BattleShipBoard
     JLabel gameLbl = new JLabel("Games: " + gameCounter);
     JLabel matchLbl = new JLabel("Hits: " + hitsCounter);
     JLabel shipLbl = new JLabel("Sunk: " + hitsCounter);
-
+    JLabel statusLbl = new JLabel(shipsStatus);
 
     // JButtons
     JButton[][] gameButtons = new JButton[10][10];
@@ -52,15 +51,9 @@ public class BattleShipBoard
     JButton stopButton = new JButton("Stop");
 
     // image icons
-    ImageIcon original = new ImageIcon("imageOriginal.gif");
+    ImageIcon blank = new ImageIcon("blank.gif");
     ImageIcon hit = new ImageIcon("hit.gif");
     ImageIcon miss = new ImageIcon("miss.gif");
-    
-
-    // images
-    ArrayList<String> images = new ArrayList<String>();
-    ArrayList<ImageIcon> gameImages = new ArrayList<ImageIcon>();
-
 
     // constructor
     public BattleShipBoard() {
@@ -108,8 +101,8 @@ public class BattleShipBoard
 
         // Ship status panel (WEST)
         //scorePnl.add(shipLbl);
-        shipPnl.setLayout(new GridLayout(10,10,2,2));
-        //makePlayerPanel();
+        shipPnl.setLayout(new GridLayout(5,1,2,2));
+        shipPnl.add(statusLbl);
         backgroundPnl.add(shipLbl, BorderLayout.WEST);
         // add the backgroundPnl
         add(backgroundPnl);
@@ -117,37 +110,17 @@ public class BattleShipBoard
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         
-        //turns
-        
-        while(gamePlay == 0){
-        	computerTurn();
-        	playerTurn();
-        	
-        	
         	
         }
-    }
 
     public void makeGameButtons() {
     	for (int row = 0; row<gameButtons.length; row++) {
   			for (int col = 0; col<gameButtons[0].length; col++) { 
   				// put the original image on all the buttons
-            	gameButtons[row][col] = new JButton(original);
+            	gameButtons[row][col] = new JButton(blank);
             	// add ActionListener to the buttons
             	gameButtons[row][col].addActionListener(this);
             	gamePnl.add(gameButtons[row][col]);
-  			}
-  		}     
-    }
-    
-    public void makePlayerPanel() {
-    	for (int row = 0; row<playerPnl.length; row++) {
-  			for (int col = 0; col<playerPnl[0].length; col++) { 
-  				// put the original image on all the buttons
-            	playerPnl[row][col] = new JPanel();
-            	playerPnl[row][col].setBackground(Color.CYAN);
-            	// add ActionListener to the buttons
-            	shipPnl.add(playerPnl[row][col]);
   			}
   		}     
     }
@@ -155,54 +128,18 @@ public class BattleShipBoard
     public void resetGameButtons() {
         for (int row = 0; row<gameButtons.length; row++) {
   			for (int col = 0; col<gameButtons[0].length; col++) { 
-  				gameButtons[row][col].setIcon(original);
+  				gameButtons[row][col].setIcon(blank);
             	gameButtons[row][col].setEnabled(true);
   			}
   		}     
     }
-    public void computerTurn(){
-    	boolean turn = true;
-    	
-    	int xRand = (int)(Math.random() * 10);
-    	int yRand = (int)(Math.random() * 10);
-    	
-    	while(turn == true){
-    	
-    		if(playerBoard[yRand][xRand].equals("/")){
-    			playerBoard[yRand][xRand] = "miss";
-    			gameButtons[yRand][xRand].setIcon(miss);
-    		}
-    		else if(playerBoard[yRand][xRand].equals("hit")){
-    			xRand = (int)(Math.random() * 10);
-    			yRand = (int)(Math.random() * 10);
-    		}
-    		else{
-    			playerBoard[yRand][xRand] = "hit";
-    			gameButtons[yRand][xRand].setIcon(hit);
-    			turn = false;
-    			break;
-    		}
-    	}
-	}
-    public void playerTurn(){
-    	
-    	
-    	
-    	
-    	
-    	
-    }
     
     public void resetBoard() {
-        images.clear();
-        gameImages.clear();
         // resetGameButtons
         resetGameButtons();
         // reset all the storage variables
         button1 = -1;
         button2 = -1;
-        image1 = null;
-        image2 = null;
         // add to the gameCounter and reset all the other counters
         gameCounter++;
         gameLbl.setText("Games: " + gameCounter);
@@ -263,7 +200,7 @@ public class BattleShipBoard
  									test = 1;
  									counter = 0;
  								}
- 						}
+ 							}
  							else{
  								x = s.getRandomCoordinate();
  								y = s.getRandomCoordinate();
@@ -304,7 +241,7 @@ public class BattleShipBoard
  								counter = 0;
  								break;
  							}
- 					}
+ 						}
  					}
  				else{
  				x = s.getRandomCoordinate();
@@ -383,15 +320,73 @@ public class BattleShipBoard
     public void actionPerformed(ActionEvent e) {
         Object source = e.getSource();
         // check if the source is start or start
-        if(source == startButton) {
+        /*if(source == startButton) {
             resetBoard();
         }
         if(source == stopButton) {
             // stop the program
             System.exit(1);
-        }
+        }*/
+    		
+    		//if(playerTurn == true){
+    			for (int row = 0; row<computerBoard.length; row++) {
+  					for (int col = 0; col<computerBoard[0].length; col++) { 
+  						if(source == gameButtons[col][row]){
+  							if(computerBoard[col][row].equals("/")){
+    							computerBoard[col][row] = "hit";
+    							System.out.println ("Miss");
+    							gameButtons[col][row].setIcon(miss);
+    							computerTurn();
+    						}
+    						else if(computerBoard[col][row].equals("hit")){
+    							System.out.println ("Pick another spot");
+    						}
+    						else{
+    							computerBoard[col][row] = "hit";
+    							playerHits++;
+    							gameButtons[col][row].setIcon(hit);
+    							System.out.println ("Hit");
+    							System.out.println (playerHits);
+    							if(playerHits == 17){
+    								System.out.println ("Player Wins");
+    							}
+    							computerTurn();
+    						}
+  						}
+  					}  
+    			}
     }
-    
+	public void computerTurn(){
+		
+			int xRand = (int)(Math.random() * 10);
+    		int yRand = (int)(Math.random() * 10);
+		
+    		if(playerBoard[yRand][xRand].equals("/")){
+    			playerBoard[yRand][xRand] = "miss";
+    			System.out.println ("Miss");
+    		}
+    		else if(playerBoard[yRand][xRand].equals("hit")){
+   				computerTurn();
+   			}
+   			else{
+    			computerHits++;
+    			System.out.println ("Hit");
+    			System.out.println (computerHits);
+    			for (int i = 0; i<computerShips.length; i++){
+    				if(playerBoard[yRand][xRand].equals(computerShips[i])){
+    					computerShips[i].setHitCounter(computerShips[i].getHitCounter() - 1);
+    					if(computerShips[i].getHitCounter() == 0){
+    						shipsStatus = "The computer sunk your" + computerShips[i].getType();
+    					}
+    				}
+    			}	
+    			playerBoard[yRand][xRand] = "hit";
+    			if(computerHits == 17){
+    				System.out.println ("Computer Wins");
+    			}
+    			
+    		}
+   	}
     public static void main(String [] args){
     	BattleShipBoard battleShipBoard = new BattleShipBoard();
     }
