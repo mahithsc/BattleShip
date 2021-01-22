@@ -7,6 +7,7 @@
  import java.util.ArrayList;
  
  public class TestingPlacingShips {
+ 	
  	public static void main(String [] args){
  		final int NUMBER_OF_SHIPS = 5;
  		
@@ -96,9 +97,6 @@
  				y = s.getRandomCoordinate();
  				xb = x;
  				yb = y;
- 				//System.out.print ("Checking>>>");
- 				//System.out.print (" " + x);
- 				//System.out.println (" " + y);
  				}
  			}
  			if(s.getDirection() == 1){
@@ -131,9 +129,6 @@
  				y = s.getRandomCoordinate();
  				xb = x;
  				yb = y;
- 				//System.out.print ("Checking>>>");
- 				//System.out.print (" " + x);
- 				//System.out.println (" " + y);
  				}
  			}
  			if(s.getDirection() == 2){
@@ -166,9 +161,6 @@
  				y = s.getRandomCoordinate();
  				xb = x;
  				yb = y;
- 				//System.out.print ("Checking>>>");
- 				//System.out.print (" " + x);
- 				//System.out.println (" " + y);
  				}
  			}
  			if(s.getDirection() == 3){
@@ -201,9 +193,6 @@
  				y = s.getRandomCoordinate();
  				xb = x;
  				yb = y;
- 				//System.out.print ("Checking>>>");
- 				//System.out.print (" " + x);
- 				//System.out.println (" " + y);
  				}
  			}
  		}
@@ -217,3 +206,4 @@
   		}
  	}
  }
+ 	
