@@ -1,5 +1,5 @@
 /* TestingPlacingShips.java
- * Brendan Galvin
+ * Brendan Galvin, Simon Donkor, Mahith Chitrapu, Alexander Rebines
  * Mr.Blondin
  * Java II - Graphics
  * 1/6/21
