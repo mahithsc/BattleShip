@@ -1,5 +1,5 @@
 /* Ship.java
- * Brendan Galvin
+ * Brendan Galvin, Mahith Chitrapu, Simon Donkor, Alexander Rebines
  * Mr.Blondin
  * Java II - Graphics
  * 1/4/21
